@@ -29,6 +29,7 @@ LearnABCForm::LearnABCForm(void) {
 }
 
 LearnABCForm::~LearnABCForm(void) {
+	if(game) delete game;
 }
 
 bool LearnABCForm::Initialize() {
@@ -51,6 +52,5 @@ result LearnABCForm::OnInitializing(void) {
 
 result LearnABCForm::OnTerminating(void) {
 	result r = E_SUCCESS;
-	if(game) delete game;
 	return r;
 }
