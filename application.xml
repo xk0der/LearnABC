@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Application>
+    <Entry>LearnABC</Entry>
+    <Name>
+        <English>LearnABC</English>
+        <eng-GB>LearnABC</eng-GB>
+    </Name>
+    <Vendor>xk0der</Vendor>
+    <Description/>
+    <Icons>
+        <MainMenu>LearnABC_type4.png<Type1/>
+            <Type2/>
+            <Type3>LearnABC_type3.png</Type3>
+            <Type4>LearnABC_type4.png</Type4>
+            <Type5>LearnABC_type5.png</Type5>
+        </MainMenu>
+        <Setting/>
+        <Ticker/>
+        <QuickPanel/>
+        <LaunchImage>Splash_type4.png<Type1/>
+            <Type2/>
+            <Type3>Splash_type3.png</Type3>
+            <Type4>Splash_type4.png</Type4>
+            <Type5>Splash_type5.png</Type5>
+        </LaunchImage>
+    </Icons>
+    <AutoScaling>
+        <Enabled>true</Enabled>
+        <BaseResolution>NormalSize</BaseResolution>
+    </AutoScaling>
+</Application>

@@ -1,0 +1,9 @@
+.Target*
+.badaprj
+.cproject
+.settings
+.project
+*.htb
+manifest.xml
+signature.xml
+DebugInfo
