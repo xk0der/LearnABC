@@ -41,19 +41,19 @@ Application* LearnABC::CreateInstance(void) {
 
 bool LearnABC::OnAppInitializing(AppRegistry& appRegistry) {
 	// Create a form
-	LearnABCForm *pForm1 = new LearnABCForm();
-	pForm1->Initialize();
+	LearnABCForm *pMainForm = new LearnABCForm();
+	pMainForm->Initialize();
 
 	// Add the form to the frame
 	Frame *pFrame = GetAppFrame()->GetFrame();
-	pFrame->AddControl(*pForm1);
+	pFrame->AddControl(*pMainForm);
 
 	// Set the current form
-	pFrame->SetCurrentForm(*pForm1);
+	pFrame->SetCurrentForm(*pMainForm);
 
 	// Draw and Show the form
-	pForm1->Draw();
-	pForm1->Show();
+	pMainForm->Draw();
+	pMainForm->Show();
 
 	return true;
 }

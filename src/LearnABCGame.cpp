@@ -27,14 +27,12 @@ using namespace Osp::Ui::Controls;
 LearnABCGame::LearnABCGame() {
 }
 
-void LearnABCGame::Construct(Osp::Ui::Controls::Form *gameForm) {
+result LearnABCGame::Construct(Osp::Ui::Controls::Form *gameForm) {
 	Osp::Base::DateTime dt;
 	Osp::System::SystemTime::GetCurrentTime(dt);
 	Osp::Base::Utility::Math::Srand(static_cast<unsigned int>(dt.GetTime().GetSeconds()));
 
 	this->gameForm = gameForm;
-	result r = E_SUCCESS;
-
 
 	Alpha.Append(L"ABCDEFGHIJIKLMNOPQRSTUVWXYZ");
 
@@ -45,21 +43,22 @@ void LearnABCGame::Construct(Osp::Ui::Controls::Form *gameForm) {
 		pButtonAlpha[idx] = static_cast<Osp::Ui::Controls::Button*>(gameForm->GetControl(buttonResourceName));
 		if(pButtonAlpha[idx] == null) {
 			AppLog("Could not get one of the buttons!!");
-			r = E_FAILURE;
+
+			return E_FAILURE;
 			break;
 		}
 		pButtonAlpha[idx]->SetActionId(idx);
 		pButtonAlpha[idx]->AddActionEventListener(*this);
 	}
 
-	initAudio();
+	return initAudio();
 }
 
 void LearnABCGame::start(void) {
 	setNextBoard();
 }
 
-void LearnABCGame::initAudio(void) {
+result LearnABCGame::initAudio(void) {
 
 	audioPlayer = new Osp::Media::Player();
 	int rt = audioPlayer->Construct(*this, 0);
@@ -67,10 +66,13 @@ void LearnABCGame::initAudio(void) {
 	if(rt != E_SUCCESS) {
 		AppLog("Unable to properly construct Player!");
 		audioPlayer = null;
+		return E_FAILURE;
 	} else {
 		audioPlayer->SetVolume(100);
 		audioPlayer->SetLooping(false);
 	}
+
+	return E_SUCCESS;
 }
 
 
@@ -79,7 +81,7 @@ void LearnABCGame::playSound(Osp::Base::String filePath) {
 		return;
 	}
 
-	int rt = E_SUCCESS;
+	result rt = E_SUCCESS;
 
 	while(audioPlayer->GetState() == Osp::Media::PLAYER_STATE_PLAYING) ;
 
@@ -129,7 +131,6 @@ result LearnABCGame::setNextBoard(void) {
 			}
 		}
 		usedButton[choosenButton] = true;
-		AppLog("choosenButton: %i", choosenButton);
 		pButtonAlpha[choosenButton]->SetShowState(true);
 
 		if(idx == 0) {
@@ -180,7 +181,6 @@ result LearnABCGame::setNextBoard(void) {
 void LearnABCGame::OnActionPerformed(const Osp::Ui::Control& source, int actionId)
 {
 	if(actionId == answerButton) {
-		AppLog("Correct Answer!");
 		String path;
 		path.Append(RES_PATH);
 		{
@@ -193,7 +193,6 @@ void LearnABCGame::OnActionPerformed(const Osp::Ui::Control& source, int actionI
 		setNextBoard();
 	} else {
 		playSound(RES_SOUND_WRONG1);
-		AppLog("Incorrect!!");
 	}
 }
 

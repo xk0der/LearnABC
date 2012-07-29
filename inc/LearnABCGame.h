@@ -52,12 +52,12 @@ class LearnABCGame :
 
 		result setNextBoard(void);
 		void playSound(Osp::Base::String filePath);
-		void initAudio(void);
+		result initAudio(void);
 
 	public:
 		virtual void OnActionPerformed(const Osp::Ui::Control& source, int actionId);
 		LearnABCGame();
-		void Construct(Osp::Ui::Controls::Form *gameForm);
+		result Construct(Osp::Ui::Controls::Form *gameForm);
 		virtual ~LearnABCGame();
 		void start(void);
 

@@ -39,18 +39,17 @@ bool LearnABCForm::Initialize() {
 	// Create the game
 	game = new LearnABCGame();
 	if(game) {
-		game->Construct(this);
+		if(game->Construct(this) != E_SUCCESS) return false;
+
 		game->start();
 	}
 	return true;
 }
 
 result LearnABCForm::OnInitializing(void) {
-	result r = E_SUCCESS;
-	return r;
+	return E_SUCCESS;
 }
 
 result LearnABCForm::OnTerminating(void) {
-	result r = E_SUCCESS;
-	return r;
+	return E_SUCCESS;
 }
